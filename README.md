@@ -48,3 +48,23 @@ Frontend runs on `http://127.0.0.1:5173` and proxies `/api/*` to backend.
 
 - Backend: `gunicorn --bind 0.0.0.0:5000 app:app`
 - Frontend: `npm run build` and serve `frontend/dist`
+
+## Deploy on Render
+
+This repo now includes `render.yaml` for one-click blueprint deployment.
+
+1. In Render, create a new Blueprint and connect this repo.
+2. Render will create two services:
+   - `ats-fraud-backend` (Python web service)
+   - `ats-fraud-frontend` (Static site)
+3. After first deploy, set frontend env var:
+   - `VITE_API_BASE_URL=https://<your-backend-service>.onrender.com`
+4. Trigger a redeploy of the frontend service.
+
+If you deploy manually (without blueprint), use:
+- Backend Root Directory: `backend`
+- Backend Build Command: `pip install -r requirements.txt`
+- Backend Start Command: `gunicorn app:app`
+- Frontend Root Directory: `frontend`
+- Frontend Build Command: `npm ci && npm run build`
+- Frontend Publish Directory: `dist`
