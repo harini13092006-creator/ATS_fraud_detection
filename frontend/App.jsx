@@ -1,4 +1,4 @@
-import UploadResume from "./UploadResume";
+import UploadResume from "./uploadResume";
 import "./index.css";
 
 function App() {
