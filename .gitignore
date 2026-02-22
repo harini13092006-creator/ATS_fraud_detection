@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Upload folder
+backend/uploads/
+uploads/
+
+# Environment
+.env
