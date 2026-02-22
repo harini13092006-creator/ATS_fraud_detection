@@ -1,8 +1,5 @@
-import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-nlp = spacy.load("en_core_web_sm")
 
 SKILLS_DB = [
     "python", "machine learning", "data science",

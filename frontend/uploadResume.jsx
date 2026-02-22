@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/$/, "");
+
 export default function UploadResume() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
@@ -34,7 +36,7 @@ export default function UploadResume() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:5000/analyze", {
+      const res = await fetch(`${apiBaseUrl}/analyze`, {
         method: "POST",
         body: formData,
       });
@@ -51,7 +53,7 @@ export default function UploadResume() {
       setResult(data);
     } catch (err) {
       console.error(err);
-      alert("Error uploading resume. Ensure backend is running at http://127.0.0.1:5000");
+      alert("Error uploading resume. Ensure backend is running and reachable.");
     }
     setLoading(false);
   };
