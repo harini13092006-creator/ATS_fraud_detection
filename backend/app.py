@@ -28,10 +28,12 @@ def index():
     return "ATS Fraud Detection API is running. Use POST /analyze (field 'file') or POST /upload (field 'resume' or 'file')."
 
 @app.route("/status", methods=["GET"])
+@app.route("/api/status", methods=["GET"])
 def status():
     return jsonify({"status": "ok", "routes": [str(r) for r in app.url_map.iter_rules()]})
 
 @app.route("/analyze", methods=["POST"])
+@app.route("/api/analyze", methods=["POST"])
 def analyze():
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
@@ -50,6 +52,7 @@ def analyze():
 
 # Compatibility endpoint for frontend (accepts "resume" or "file")
 @app.route("/upload", methods=["POST"])
+@app.route("/api/upload", methods=["POST"])
 def upload():
     # Accept both 'resume' (from frontend) and 'file' (from other clients)
     uploaded = request.files.get("resume") or request.files.get("file")
